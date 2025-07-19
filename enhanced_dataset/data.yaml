@@ -1,0 +1,8 @@
+# Your data.yaml file
+
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 4
+names: ['angle', 'fracture', 'line', 'messed_up_angle']

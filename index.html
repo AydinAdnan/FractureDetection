@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h2>Upload X-ray Image</h2>
+  <input type="file" id="imageInput" accept="image/*">
+  <button onclick="uploadImage()">Upload</button>
+  <br><br>
+  <img id="resultImg" style="max-width: 500px;">
+
+  <script>
+    async function uploadImage() {
+      const input = document.getElementById('imageInput');
+      const file = input.files[0];
+      const formData = new FormData();
+      formData.append('file', file);
+
+      const res = await fetch('http://127.0.0.1:8000/predict/', {
+        method: 'POST',
+        body: formData
+      });
+
+      const data = await res.json();
+      document.getElementById('resultImg').src = `http://127.0.0.1:8000${data.result_image_url}`;
+    }
+  </script>
+</body>
+</html>
